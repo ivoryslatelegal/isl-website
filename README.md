@@ -1,6 +1,12 @@
-# Ivory Slate Legal — Website (V11.3)
+# Ivory Slate Legal — Website (V11.4)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP) and favicons. No build step, no dependencies - just static files.
+
+## What's new in V11.4
+A quick follow-up correction on the post-page layout, after review of the delivered V11.3 build:
+
+1. **"Back to The Docket" link moved back to the left**, above the headline - left-aligned, arrow pointing left. (V11.2/V11.3 had it right-aligned; on reflection the left position reads more naturally as "back".)
+2. **Header image narrowed to 700px**, flush with the article text column, instead of the wider 960px used in V11.2/V11.3.
 
 ## What's new in V11.3
 A visual-bug and brand-accuracy pass on the V11.2 Docket round, caught from a screenshot review before you uploaded:
