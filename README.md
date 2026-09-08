@@ -1,14 +1,21 @@
-# Ivory Slate Legal — Website (V11.2)
+# Ivory Slate Legal — Website (V11.3)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP) and favicons. No build step, no dependencies - just static files.
+
+## What's new in V11.3
+A visual-bug and brand-accuracy pass on the V11.2 Docket round, caught from a screenshot review before you uploaded:
+
+1. **Featured post's image on the Docket index no longer crops.** It was being stretched to fill the row height set by the text next to it, cutting off the sides of the image and part of the title. It now keeps its correct 1200:630 shape and centers in the row.
+2. **Header image on post pages widened.** It was capped at the same 700px width as the article text, while the teal hero band above it ran full-width - leaving it looking small and stranded. It's now 960px wide, so it reads as a proper visual continuing the hero. The article text itself stays at 700px for readability, and stays un-boxed (we talked this through - a boxed article body would've been a bigger, unnecessary departure from how the rest of the site reads).
+3. **Title-card images rebuilt to match the actual brand collateral.** The line motif in the first version was an invented pattern that didn't match the firm's real brand assets. Rebuilt using the exact clustered-parallel-contour-line motif from the brand reference image, banked to the right edge the same way - the same motif already used in the homepage hero.
 
 ## What's new in V11.2
 A Docket polish round, all four items you asked for:
 
 1. **Post cards rearranged into a "featured + grid" layout.** The most recent post shows large at the top (image left, title/description right), with older posts below it in a uniform two-column grid. This was chosen over a fully asymmetric/bento grid specifically because it holds up as more posts get added one at a time through the self-serve workflow - there's always exactly one "featured" slot, and everything else just drops cleanly into the grid, no manual rebalancing needed.
-2. **"Back to The Docket" link moved to the right.** It now sits flush right above each post's headline (with the arrow flipped to point right), instead of being stranded on the left where it looked accidental.
+2. **"Back to The Docket" link moved to the right.** It now sits flush right above each post's headline, instead of being stranded on the left where it looked accidental - the arrow still points left/back, since that's what it does.
 3. **Share buttons added to every post** - LinkedIn, X, WhatsApp, and Copy Link, styled as small round teal buttons matching the brand. Instagram was deliberately left out: Instagram has no web "share this link" button at all (it only supports sharing via its own mobile app to Stories), so a same-looking button for it would have been non-functional. WhatsApp was added instead, since it's a real, working, and widely used sharing channel for this audience.
-4. **Every post now has its own branded title-card image** - teal background, the site's topographic line motif, the post's practice-area tag and title set in Fira Sans, plus the firm name and date. These live in `docket/assets/` and are used both as the header image on the post itself and as the `og:image`/Twitter-card image, so a link shared to LinkedIn, WhatsApp, or anywhere else now renders with a distinct, on-brand image, title, and description - not the generic firm logo it fell back to before.
+4. **Every post now has its own branded title-card image** - teal background, the site's topographic line motif, the post's practice-area tag and title set in Fira Sans, plus the firm name and date. These live in `docket/assets/` and are used both as a header image on the post itself, and as the `og:image`/Twitter-card image, so a link shared to LinkedIn, WhatsApp, or anywhere else now renders with a distinct, on-brand image, title, and description - not the generic firm logo it fell back to before.
 
 ## What's new in V11.1
 A quick follow-up round right after V11 launched, no other changes:
