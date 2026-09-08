@@ -1,12 +1,18 @@
-# Ivory Slate Legal — Website (V11)
+# Ivory Slate Legal — Website (V11.1)
 
-This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, an `insights/` section (index page plus one folder per post), `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP) and favicons. No build step, no dependencies - just static files.
+This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post), `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP) and favicons. No build step, no dependencies - just static files.
+
+## What's new in V11.1
+A quick follow-up round right after V11 launched, no other changes:
+
+1. **Knowledge-bank section renamed from "Insights" to "The Docket"** (`/insights/` is now `/docket/`), per your feedback that "Insights" was too generic - picked from a shortlist of more distinctive, legal-literate options. Every nav link, page title, meta tag, canonical URL, JSON-LD reference, and the `sitemap.xml` entries were updated to match.
+2. **A "Home" link added to the top nav on every Docket page** (the index and all three posts), matching the pattern already used on the DPDP compliance page - so a visitor landing directly on a post from a search result or shared link has an obvious way back to the homepage, not just the logo click.
 
 ## What's new in V11
 1. **Tagline replaced.** "Strong opinions. Stronger paperwork." (flagged as cringe) is now "Clarity in counsel, precision in execution."
 2. **Top nav decluttered.** The redundant "Contact" link (identical destination to the "Get in Touch" button) has been removed from the main nav; footer nav is unchanged.
 3. **Practice Areas ring rebuilt from six items to seven genuine practice areas**, replacing two items that weren't actually practice areas (Data Protection and Drafting & Documentation were service/compliance topics, not fields of practice). The ring now reads: Litigation & Dispute Resolution, Corporate & Commercial, Banking & Finance, Mergers & Acquisitions, White Collar Crime & Investigations, Regulatory & Compliance (which now carries DPDP Act advisory as one of its listed services, with the same "Explore DPDP Compliance" link the old Data Protection node had), and Intellectual Property & Trademarks. The ring geometry was recomputed for seven nodes (was six).
-4. **New Insights section** (`/insights/`) - a knowledge-bank / blog area, linked from the main nav on every page. Launched with three seed posts (DPDP Act enforcement timeline, MSME Act Section 18 recovery claims, five vendor-contract clauses founders skip), each Rule-36-safe (general awareness only, no case specifics), with its own OG tags and Article structured data so links render well when shared or crossposted to LinkedIn/Substack. See `claude/isl-insights-workflow-guide.md` in the project for how to add future posts.
+4. **New knowledge-bank section launched** (originally named "Insights," renamed to "The Docket" in V11.1 - see above), linked from the main nav on every page. Launched with three seed posts (DPDP Act enforcement timeline, MSME Act Section 18 recovery claims, five vendor-contract clauses founders skip), each Rule-36-safe (general awareness only, no case specifics), with its own OG tags and Article structured data so links render well when shared or crossposted to LinkedIn/Substack. See `claude/isl-insights-workflow-guide.md` in the project for how to add future posts.
 
 ## What's new in V10
 A Bar Council of India compliance addition, no other changes:
@@ -112,12 +118,12 @@ The detailed changelog above goes back to V7; before that:
 - **V6** — added SMIL data-flow "pipe" animations and cursor-attraction dots to the DPDP page.
 
 ## Uploading correctly (avoiding duplicate/misplaced files)
-This site has files nested inside subfolders — `dpdp-act-data-protection-compliance/`, and as of V11, `insights/` and its three post subfolders. GitHub's web upload only preserves folder structure if you drag a **folder** onto the upload area; if you drag loose files that happen to share a name (several pages are all called `index.html`), GitHub can't tell them apart and will rename the collisions to `index (1).html`, `index (2).html`, etc. at the repo root instead of placing them in the right subfolder.
+This site has files nested inside subfolders — `dpdp-act-data-protection-compliance/`, and as of V11, `docket/` and its three post subfolders. GitHub's web upload only preserves folder structure if you drag a **folder** onto the upload area; if you drag loose files that happen to share a name (several pages are all called `index.html`), GitHub can't tell them apart and will rename the collisions to `index (1).html`, `index (2).html`, etc. at the repo root instead of placing them in the right subfolder.
 
 To avoid this, upload folder-by-folder rather than "select everything and drop it in one go":
 1. Drag the `assets` folder in on its own.
 2. Drag the `dpdp-act-data-protection-compliance` folder in on its own.
-3. Drag the `insights` folder in on its own (this one has its own subfolders inside it — make sure you're dragging the `insights` folder itself, not its contents).
+3. Drag the `docket` folder in on its own (this one has its own subfolders inside it — make sure you're dragging the `docket` folder itself, not its contents).
 4. Drag the remaining top-level files together: `index.html`, `dpdp.html`, `CNAME`, `robots.txt`, `sitemap.xml`, `README.md`, `favicon.ico`.
 
 After each upload, check the repo's file list shows folders (with a folder icon) rather than a flat pile of numbered duplicates before moving to the next step.
