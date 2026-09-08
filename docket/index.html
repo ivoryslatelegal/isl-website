@@ -100,6 +100,7 @@
     .post-hero{padding:56px 24px 40px;} .post-title{font-size:30px;} .post-body{padding:44px 24px 60px;}
   }
 
+
   .post-card{display:block; padding:32px 34px; background:var(--cream); border-radius:2px; margin-bottom:20px; transition:transform .2s ease, box-shadow .2s ease;}
   .post-card:hover{transform:translateY(-3px); box-shadow:0 20px 40px -20px rgba(30,62,73,0.25);}
   .post-card-tag{font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:10px;}
@@ -107,8 +108,27 @@
   .post-card p{font-size:14px; line-height:1.7; color:var(--ink-soft); font-weight:300; margin:0 0 14px; max-width:640px;}
   .post-card-date{font-size:12px; color:#8a8377;}
   .insights-hero{background:var(--teal-deep); padding:90px 64px 64px;}
-  .insights-list{padding:60px 64px 100px; max-width:900px; margin:0 auto;}
-  .coming-soon{max-width:900px; margin:0 auto; padding:28px 34px; border:1px dashed var(--line); border-radius:2px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+  .insights-list{padding:60px 64px 100px; max-width:1080px; margin:0 auto;}
+  .coming-soon{max-width:1080px; margin:36px auto 0; padding:28px 34px; border:1px dashed var(--line); border-radius:2px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+
+  /* Featured + grid docket layout */
+  .post-card-featured{display:grid; grid-template-columns:1.1fr 1fr; gap:0; align-items:stretch; background:var(--cream); border-radius:2px; overflow:hidden; margin-bottom:28px; transition:transform .2s ease, box-shadow .2s ease;}
+  .post-card-featured:hover{transform:translateY(-3px); box-shadow:0 24px 48px -20px rgba(30,62,73,0.28);}
+  .post-card-featured-img{background:var(--teal-deep); overflow:hidden; min-height:260px;}
+  .post-card-featured-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .post-card-featured-body{padding:40px 44px; display:flex; flex-direction:column; justify-content:center;}
+  .post-card-featured-body h2{font-size:28px; color:var(--ink); font-weight:600; margin:0 0 14px; line-height:1.25;}
+  .post-card-featured-body p{font-size:15px; line-height:1.75; color:var(--ink-soft); font-weight:300; margin:0 0 16px;}
+  .post-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:22px;}
+  .post-card{padding:0; overflow:hidden; margin-bottom:0; display:flex; flex-direction:column;}
+  .post-card-img{background:var(--teal-deep); overflow:hidden; aspect-ratio:1200/630;}
+  .post-card-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .post-card-body{padding:26px 28px 28px;}
+  @media (max-width:820px){
+    .post-card-featured{grid-template-columns:1fr;}
+    .post-card-featured-img{min-height:200px;}
+    .post-grid{grid-template-columns:1fr;}
+  }
   @media (max-width:640px){
     .insights-hero{padding:56px 24px 40px;} .insights-list{padding:44px 24px 60px;}
   }
@@ -151,24 +171,35 @@
     <p style="color:#c6d3cf; font-size:15px; max-width:600px; margin:18px 0 0; font-weight:300; line-height:1.7;">Plain-English notes on Indian law and regulation, written for founders and businesses rather than other lawyers. General awareness only - not legal advice, and not specific to any client or matter.</p>
   </div>
   <div class="insights-list">
-      <a href="dpdp-act-enforcement-status/" class="post-card">
-        <div class="post-card-tag">Data Protection</div>
-        <h3 class="serif">DPDP Act, 2023: Where Enforcement Actually Stands</h3>
-        <p>A plain-English status check on India's Digital Personal Data Protection Act, 2023 - what is already in force, what is still pending, and what businesses should be doing now.</p>
-        <div class="post-card-date">September 8, 2026</div>
+      <a href="dpdp-act-enforcement-status/" class="post-card-featured">
+        <div class="post-card-featured-img"><img src="assets/dpdp-act-enforcement-status.png" alt="" loading="lazy"></div>
+        <div class="post-card-featured-body">
+          <div class="post-card-tag">Data Protection</div>
+          <h2 class="serif">DPDP Act, 2023: Where Enforcement Actually Stands</h2>
+          <p>A plain-English status check on India's Digital Personal Data Protection Act, 2023 - what is already in force, what is still pending, and what businesses should be doing now.</p>
+          <div class="post-card-date">September 8, 2026</div>
+        </div>
       </a>
-      <a href="msme-section-18-recovery-claims/" class="post-card">
-        <div class="post-card-tag">Litigation & Disputes</div>
-        <h3 class="serif">MSME Act Section 18: What a Vendor Should Know Before Filing a Recovery Claim</h3>
-        <p>A general explainer on the delayed-payment recovery mechanism under Sections 15-18 of the MSMED Act, 2006, for vendors and founders dealing with overdue commercial payments.</p>
-        <div class="post-card-date">September 8, 2026</div>
-      </a>
-      <a href="five-clauses-founders-skip/" class="post-card">
-        <div class="post-card-tag">Corporate & Commercial</div>
-        <h3 class="serif">Five Clauses Founders Routinely Skip in a Vendor Contract</h3>
-        <p>A practical, non-technical look at the five contract terms founders most often leave out of vendor agreements, and why each one matters before a dispute happens, not after.</p>
-        <div class="post-card-date">September 8, 2026</div>
-      </a>
+      <div class="post-grid">
+        <a href="msme-section-18-recovery-claims/" class="post-card">
+          <div class="post-card-img"><img src="assets/msme-section-18-recovery-claims.png" alt="" loading="lazy"></div>
+          <div class="post-card-body">
+            <div class="post-card-tag">Litigation & Disputes</div>
+            <h3 class="serif">MSME Act Section 18: What a Vendor Should Know Before Filing a Recovery Claim</h3>
+            <p>A general explainer on the delayed-payment recovery mechanism under Sections 15-18 of the MSMED Act, 2006, for vendors and founders dealing with overdue commercial payments.</p>
+            <div class="post-card-date">September 8, 2026</div>
+          </div>
+        </a>
+        <a href="five-clauses-founders-skip/" class="post-card">
+          <div class="post-card-img"><img src="assets/five-clauses-founders-skip.png" alt="" loading="lazy"></div>
+          <div class="post-card-body">
+            <div class="post-card-tag">Corporate & Commercial</div>
+            <h3 class="serif">Five Clauses Founders Routinely Skip in a Vendor Contract</h3>
+            <p>A practical, non-technical look at the five contract terms founders most often leave out of vendor agreements, and why each one matters before a dispute happens, not after.</p>
+            <div class="post-card-date">September 8, 2026</div>
+          </div>
+        </a>
+      </div>
     <div class="coming-soon">More notes are on their way. Follow Ivory Slate Legal on LinkedIn for new posts as they're published.</div>
   </div>
 
