@@ -1,6 +1,15 @@
-# Ivory Slate Legal — Website (V11.4)
+# Ivory Slate Legal — Website (V12)
 
-This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP) and favicons. No build step, no dependencies - just static files.
+This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V12
+A new **Our Team** page (`/team/`), linked from the main nav and footer on every page.
+
+1. **Nine team members featured**, grouped by seniority - Partners, Senior Associates, Associates, Paralegals - with photo, name, title, and a short bio for each. Gauri Jasana and Samarth Acharya (the firm's Managing Partners) are intentionally not featured, per the standing decision to keep them off the public-facing site for now; this page instead introduces the other partner and the associate/paralegal team as the firm's public face in the meantime.
+2. **All seven practice areas assigned a named head.** Each Partner and Senior Associate heads one or two of the firm's seven practice areas (Litigation & Dispute Resolution, Regulatory & Compliance, Mergers & Acquisitions, White Collar Crime & Investigations, Banking & Finance, Corporate & Commercial, Intellectual Property & Trademarks), with Associates and Paralegals mapped in support underneath. Bios were checked and revised with you over several rounds, and the specific services named in each bio (e.g. "MSME Act Section 18 claims," "trademark search & registration") are pulled directly from the existing Practice Areas section for consistency.
+3. **Interactive photo cards**, matching the site's existing motion language: a mouse-tracking 3D tilt and spotlight glow on each photo, a bio reveal on hover (falls back to a bio line shown by default on mobile, where hover doesn't apply), scroll-triggered fade-in, and a lift/border-glow on hover - built with the same easing curves and teal/cream palette as the rest of the site.
+4. **Photos processed and delivered as a single set** in `assets/team/`, cropped to a consistent 3:4 portrait ratio and compressed for web use.
+5. Since this adds a new page/section (not a bug fix), the version number moved to a new whole number per the versioning convention agreed earlier, rather than a decimal bump.
 
 ## What's new in V11.4
 A quick follow-up correction on the post-page layout, after review of the delivered V11.3 build:

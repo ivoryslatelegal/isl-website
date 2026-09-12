@@ -16,6 +16,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ivoryslatelegal.com/team/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ivoryslatelegal.com/docket/dpdp-act-enforcement-status/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
