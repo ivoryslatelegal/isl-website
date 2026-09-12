@@ -1,6 +1,15 @@
-# Ivory Slate Legal — Website (V12)
+# Ivory Slate Legal — Website (V12.1)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V12.1
+Two additions to the **Our Team** page (`/team/`):
+
+1. **Hardik Bansal added as an Associate**, supporting Banking & Finance (NBFC and financial regulatory advisory, recovery under the SARFAESI Act and other financial laws) - the one practice area not yet covered by an associate. Roster is now 11 people across five groups (Partners, Senior Associates, Associates, Paralegals, Operations).
+2. **Kanupriya Bhati added as People & Talent Lead**, in a new "Operations" section below Paralegals - leads recruitment, onboarding, and people operations as the firm grows. Not a fee-earner, so no practice-area assignment.
+3. **A floating "Work With Us" side panel** on the Team page: a vertical tab fixed to the right edge opens a panel inviting internship, paralegal, and associate/senior associate applications (plus a general "any other way you'd like to contribute" line), pointing candidates to `contact@ivoryslatelegal.com` as plain text (no form, no mailto button, per your preference for keeping it simple).
+4. Both new photos processed to the same 3:4 ratio as the rest of the roster.
+5. Decimal bump (V12 → V12.1) since this extends the existing Team page rather than adding a new page/section.
 
 ## What's new in V12
 A new **Our Team** page (`/team/`), linked from the main nav and footer on every page.

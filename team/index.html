@@ -123,6 +123,26 @@
 
   .team-placeholder{display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#8fa9a4; text-align:center; padding:20px;}
 
+  /* JOIN US — floating side panel */
+  .join-tab{position:fixed; top:50%; right:0; transform:translateY(-50%) rotate(180deg); writing-mode:vertical-rl; background:var(--teal-deep); color:var(--cream); padding:20px 11px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:500; cursor:pointer; z-index:40; border-radius:4px 0 0 4px; box-shadow:-6px 0 18px -6px rgba(0,0,0,0.35); border:none; transition:padding .2s ease, background .2s ease;}
+  .join-tab:hover{background:var(--teal); padding-right:15px;}
+  .join-backdrop{position:fixed; inset:0; background:rgba(15,20,20,0.45); backdrop-filter:blur(1px); z-index:44; opacity:0; pointer-events:none; transition:opacity .35s ease;}
+  .join-backdrop.open{opacity:1; pointer-events:auto;}
+  .join-panel{position:fixed; top:0; right:-380px; height:100%; width:360px; max-width:88vw; background:var(--paper); box-shadow:-24px 0 60px -14px rgba(0,0,0,0.35); z-index:45; padding:80px 34px 40px; transition:right .45s cubic-bezier(.2,.7,.2,1); overflow-y:auto;}
+  .join-panel.open{right:0;}
+  .join-panel-close{position:absolute; top:26px; right:26px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--ink-soft); font-size:16px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s ease, color .2s ease;}
+  .join-panel-close:hover{background:var(--teal-deep); color:var(--cream); border-color:var(--teal-deep);}
+  .join-panel .eyebrow{display:block; margin-bottom:14px;}
+  .join-panel h3{font-size:24px; color:var(--ink); font-weight:600; margin:0 0 16px; line-height:1.25;}
+  .join-panel p{font-size:14px; line-height:1.75; color:var(--ink-soft); font-weight:300; margin:0 0 16px;}
+  .join-panel .join-email{font-size:15px; font-weight:600; color:var(--teal-deep); word-break:break-word;}
+  .join-panel .join-roles{list-style:none; margin:0 0 22px; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .join-panel .join-roles li{font-size:13px; color:var(--ink-soft); display:flex; gap:8px; align-items:flex-start;}
+  .join-panel .join-roles li span{color:var(--teal); flex-shrink:0;}
+  @media (max-width:640px){
+    .join-tab{padding:16px 9px; font-size:11px;}
+  }
+
   @media (max-width:640px){
     .team-hero{padding:56px 24px 44px;} .team-hero h1{font-size:32px;}
     .team-section{padding:48px 24px 10px;}
@@ -264,7 +284,7 @@
 
   <!-- ASSOCIATES -->
   <div class="team-section">
-    <div class="team-section-head"><h2 class="serif">Associates</h2><span class="count">3</span></div>
+    <div class="team-section-head"><h2 class="serif">Associates</h2><span class="count">4</span></div>
     <div class="team-grid">
 
       <div class="team-card">
@@ -315,6 +335,22 @@
         </div>
       </div>
 
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <div class="team-photo-tilt">
+            <img src="../assets/team/hardik-bansal.jpg" alt="Hardik Bansal">
+          </div>
+          <div class="team-photo-glow"></div>
+          <div class="team-photo-ring"></div>
+          <div class="team-bio-overlay"><p>Supports the Banking &amp; Finance practice, assisting on NBFC and financial regulatory advisory and recovery proceedings under the SARFAESI Act and other financial laws.</p></div>
+        </div>
+        <div class="team-name-row">
+          <div class="team-name">Hardik Bansal</div>
+          <div class="team-role">Associate</div>
+          <p class="team-bio-static">Supports Banking &amp; Finance.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -358,6 +394,30 @@
     </div>
   </div>
 
+  <!-- OPERATIONS -->
+  <div class="team-section">
+    <div class="team-section-head"><h2 class="serif">Operations</h2><span class="count">1</span></div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <div class="team-photo-tilt">
+            <img src="../assets/team/kanupriya-bhati.jpg" alt="Kanupriya Bhati">
+          </div>
+          <div class="team-photo-glow"></div>
+          <div class="team-photo-ring"></div>
+          <div class="team-bio-overlay"><p>Leads recruitment, onboarding and people operations for the firm, building out its bench of associates and paralegals as Ivory Slate Legal grows.</p></div>
+        </div>
+        <div class="team-name-row">
+          <div class="team-name">Kanupriya Bhati</div>
+          <div class="team-role">People &amp; Talent Lead</div>
+          <p class="team-bio-static">Leads people operations and recruitment.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <footer class="site-footer">
     <a href="../" style="display:flex; align-items:center;"><picture><source srcset="../assets/logo-white.webp" type="image/webp"><img src="../assets/logo-white.png" alt="Ivory Slate Legal" style="height:40px; width:auto;"></picture></a>
     <div style="font-size:12.5px; color:#8fa9a4; font-weight:300;">&copy; 2026 Ivory Slate Legal. All rights reserved.</div>
@@ -371,6 +431,22 @@
   </footer>
 
 </div>
+
+<button type="button" id="join-tab" class="join-tab">Work With Us</button>
+<div id="join-backdrop" class="join-backdrop"></div>
+<aside id="join-panel" class="join-panel" aria-hidden="true">
+  <button type="button" id="join-panel-close" class="join-panel-close" aria-label="Close">&times;</button>
+  <span class="eyebrow">Join the firm</span>
+  <h3 class="serif">Interested in working with us?</h3>
+  <p>We're always open to hearing from good people, across every level:</p>
+  <ul class="join-roles">
+    <li><span>&bull;</span>Internships</li>
+    <li><span>&bull;</span>Paralegal positions</li>
+    <li><span>&bull;</span>Associate &amp; Senior Associate roles</li>
+    <li><span>&bull;</span>Any other way you'd like to contribute</li>
+  </ul>
+  <p>Send your CV to <span class="join-email">contact@ivoryslatelegal.com</span> and tell us a little about what you're looking for. We read every one.</p>
+</aside>
 
 <script>
   (function(){
@@ -429,6 +505,31 @@
         if (tilt) tilt.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
         if (glow) glow.style.background = 'transparent';
       });
+    });
+  })();
+
+  // Join-us floating side panel
+  (function(){
+    var tab = document.getElementById('join-tab');
+    var panel = document.getElementById('join-panel');
+    var backdrop = document.getElementById('join-backdrop');
+    var closeBtn = document.getElementById('join-panel-close');
+    if (!tab || !panel || !backdrop || !closeBtn) return;
+    function openPanel(){
+      panel.classList.add('open');
+      backdrop.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+    }
+    function closePanel(){
+      panel.classList.remove('open');
+      backdrop.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+    }
+    tab.addEventListener('click', openPanel);
+    closeBtn.addEventListener('click', closePanel);
+    backdrop.addEventListener('click', closePanel);
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closePanel();
     });
   })();
 </script>
