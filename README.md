@@ -1,6 +1,14 @@
-# Ivory Slate Legal — Website (V14)
+# Ivory Slate Legal — Website (V14.1)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V14.1
+Three quick fixes on top of V14's mobile round, all flagged from a fresh set of screenshots.
+
+1. **The "Get in Touch" button inside the new mobile menu was missing its top border** (a leftover from suppressing a duplicate divider line) - it now shows a complete, even border on all four sides.
+2. **The contact form on mobile was overflowing off the right edge of the screen**, making it look shifted right instead of centered - a classic CSS Grid sizing gotcha (a grid item wasn't shrinking to its column's width). Fixed, and now confirmed pixel-for-pixel centered at 390px width.
+3. **The footer's nav-link row removed sitewide** (desktop and mobile), since the new hamburger menu (and the full top nav on desktop) already cover navigation - the footer is now just the logo, the copyright line, and a "Back to Top" button.
+4. Bug-fix/polish round within the existing V14 pattern - no new components - so this is a decimal bump (V14 → V14.1) per the project's versioning convention.
 
 ## What's new in V14
 A mobile optimization round on the homepage, fixing five issues flagged from real phone screenshots (390px). Homepage only this round - the DPDP page, Docket, and Team page have the same missing-mobile-nav gap and are likely worth the same fix in a follow-up round.

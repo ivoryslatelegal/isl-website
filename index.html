@@ -157,7 +157,10 @@
   .mobile-menu.open{display:flex;}
   .mobile-menu a{padding:16px 24px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-top:1px solid var(--line);}
   .mobile-menu a:first-child{border-top:none;}
-  .mobile-menu a.btn{margin:16px 24px 20px; justify-content:center; border-top:none;}
+  .mobile-menu a.btn{margin:16px 24px 20px; justify-content:center; border-top:1px solid var(--teal) !important;}
+  .contact-grid > *{min-width:0;}
+  .back-to-top{display:inline-flex; align-items:center; gap:8px; background:none; border:1px solid rgba(244,239,228,0.35); color:var(--cream); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; font-family:inherit; padding:9px 18px; border-radius:1px; cursor:pointer; transition:background .25s ease, border-color .25s ease;}
+  .back-to-top:hover{background:rgba(244,239,228,0.1); border-color:rgba(244,239,228,0.6);}
 
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr !important;}
@@ -754,20 +757,25 @@
       <picture><source srcset="assets/logo-white.webp" type="image/webp"><img src="assets/logo-white.png" alt="Ivory Slate Legal" style="height:52px; width:auto;"></picture>
     </div>
     <div style="position:relative; font-size:12.5px; color:#8fa9a4; font-weight:300;">&copy; <span id="year">2026</span> Ivory Slate Legal. All rights reserved.</div>
-    <div style="position:relative; display:flex; gap:28px; font-size:12.5px; color:#c6d3cf;">
-      <a href="#practice" class="nav-link" style="color:#c6d3cf;">Practice Areas</a>
-      <a href="/dpdp-act-data-protection-compliance/" class="nav-link" style="color:#c6d3cf;">DPDP Compliance</a>
-      <a href="/docket/" class="nav-link" style="color:#c6d3cf;">The Docket</a>
-      <a href="/team/" class="nav-link" style="color:#c6d3cf;">Our Team</a>
-      <a href="#about" class="nav-link" style="color:#c6d3cf;">About</a>
-      <a href="#contact" class="nav-link" style="color:#c6d3cf;">Contact</a>
-    </div>
+    <button type="button" class="back-to-top" id="back-to-top-btn" style="position:relative;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+      Back to top
+    </button>
   </footer>
 
 </div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // back to top
+  (function(){
+    var btn = document.getElementById('back-to-top-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
 
   // scroll reveal
   (function(){
