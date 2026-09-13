@@ -103,6 +103,17 @@
   .faq-plus{transition:transform .3s ease; font-size:20px; color:var(--teal); flex-shrink:0; margin-left:20px;}
   .faq-item.open .faq-plus{transform:rotate(45deg);}
 
+  /* MOBILE NAV: hamburger + slide-down panel (below 900px, matching the existing nav-links breakpoint) */
+  .nav-toggle{display:none; align-items:center; justify-content:center; width:40px; height:40px; padding:0; background:none; border:none; cursor:pointer; color:var(--cream); flex-shrink:0;}
+  .nav-toggle svg{display:block;}
+  .mobile-menu{display:none; flex-direction:column; background:var(--near-black); border-bottom:1px solid rgba(95,228,201,0.14); box-shadow:0 16px 24px -18px rgba(0,0,0,0.4);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 24px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase; color:#c6d3cf; text-decoration:none; border-top:1px solid rgba(255,255,255,0.08);}
+  .mobile-menu a:first-child{border-top:none;}
+  .mobile-menu a.btn{margin:16px 24px 20px; justify-content:center; border-top:1px solid var(--cyan) !important;}
+  .back-to-top{display:inline-flex; align-items:center; gap:8px; background:none; border:1px solid rgba(244,239,228,0.35); color:var(--cream); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; font-family:inherit; padding:9px 18px; border-radius:1px; cursor:pointer; transition:background .25s ease, border-color .25s ease;}
+  .back-to-top:hover{background:rgba(244,239,228,0.1); border-color:rgba(244,239,228,0.6);}
+
   @media (max-width:900px){
     nav .nav-links{display:none !important;}
     .grid-5{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
@@ -110,6 +121,30 @@
     .grid-3{grid-template-columns:1fr !important;}
     .teaser-grid{grid-template-columns:1fr !important;}
     h1{font-size:42px !important;}
+    .site-nav{padding:10px 20px !important; position:relative !important;}
+    .nav-logo{position:absolute !important; left:50% !important; transform:translateX(-50%) !important;}
+    .nav-logo img{height:40px !important;}
+    .nav-toggle{display:inline-flex !important;}
+  }
+
+  @media (max-width:640px){
+    /* Penalty exposure - horizontally scrollable row instead of squeezed, hard-to-read 2-col cards */
+    .exposure-grid{display:flex !important; grid-template-columns:none !important; overflow-x:auto !important; scroll-snap-type:x mandatory !important; gap:14px !important; margin:0 -20px 24px !important; padding:0 20px 10px !important; -webkit-overflow-scrolling:touch;}
+    .exposure-grid::-webkit-scrollbar{height:6px;}
+    .exposure-grid::-webkit-scrollbar-thumb{background:rgba(95,228,201,0.25); border-radius:3px;}
+    .exposure-grid > div{flex:0 0 78%; scroll-snap-align:start;}
+
+    /* Compliance domains - same horizontal-scroll treatment; the connecting line was drawn for a single row of 4 and only linked the first two cards once this wrapped to 2x2 */
+    .domains-connector{display:none !important;}
+    .domains-grid{display:flex !important; grid-template-columns:none !important; overflow-x:auto !important; scroll-snap-type:x mandatory !important; gap:14px !important; margin:0 -20px !important; padding:0 20px 10px !important; -webkit-overflow-scrolling:touch;}
+    .domains-grid::-webkit-scrollbar{height:6px;}
+    .domains-grid::-webkit-scrollbar-thumb{background:rgba(95,228,201,0.25); border-radius:3px;}
+    .domains-grid > div{flex:0 0 78%; scroll-snap-align:start;}
+
+    /* ISL DPDP Readiness Certificate - this two-column panel had no mobile override at all and was rendering as two crushed, overlapping columns */
+    .cert-grid{grid-template-columns:1fr !important;}
+    .cert-badge-col{border-right:none !important; border-bottom:1px solid rgba(95,228,201,0.14) !important; padding:40px 28px !important;}
+    .cert-steps-col{padding:36px 28px !important;}
   }
 
   /* BCI DISCLAIMER GATE */
@@ -151,8 +186,8 @@
   </div>
 
   <!-- NAV -->
-  <nav style="position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:12px 64px; background:rgba(13,26,28,0.88); backdrop-filter:blur(8px); border-bottom:1px solid rgba(95,228,201,0.14);">
-    <a href="/" style="display:flex; align-items:center;">
+  <nav class="site-nav" style="position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:12px 64px; background:rgba(13,26,28,0.88); backdrop-filter:blur(8px); border-bottom:1px solid rgba(95,228,201,0.14);">
+    <a href="/" class="nav-logo" style="display:flex; align-items:center;">
       <picture><source srcset="../assets/logo-white.webp" type="image/webp"><img src="../assets/logo-white.png" alt="Ivory Slate Legal" style="height:52px; width:auto; display:block;"></picture>
     </a>
     <div class="nav-links" style="display:flex; align-items:center; gap:40px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#c6d3cf;">
@@ -163,7 +198,19 @@
       <a href="#faq" class="nav-link" style="color:#c6d3cf;">FAQ</a>
       <a href="/#contact" class="btn btn-cy" style="padding:11px 24px; font-size:12px;">Talk to Us</a>
     </div>
+    <button type="button" class="nav-toggle" id="nav-toggle-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="nav-toggle-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+      <svg id="nav-toggle-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/">Home</a>
+    <a href="#exposure">Penalty Exposure</a>
+    <a href="#assessment">Free Tests</a>
+    <a href="#certification">Certification</a>
+    <a href="#faq">FAQ</a>
+    <a href="/#contact" class="btn btn-cy">Talk to Us</a>
+  </div>
 
   <!-- HERO -->
   <div class="grid-bg" style="position:relative; padding:130px 64px 100px; overflow:hidden; background:radial-gradient(ellipse 70% 60% at 75% 10%, rgba(95,228,201,0.10), transparent 60%);">
@@ -215,7 +262,7 @@
       <h2 class="serif" style="font-size:42px; font-weight:500; color:var(--cream); margin:0;">What non-compliance actually costs.</h2>
       <p style="font-size:14.5px; color:#9fbdb8; margin-top:18px; font-weight:300; line-height:1.7;">Penalties under the DPDP Act 2023 are levied per instance of default, by provision - figures below are the statutory maximums per Schedule to the Act.</p>
     </div>
-    <div class="grid-5" style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:16px; max-width:1300px; margin:0 auto 24px;">
+    <div class="grid-5 exposure-grid" style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:16px; max-width:1300px; margin:0 auto 24px;">
       <div class="glow-card spot spot-cy reveal" style="padding:28px 22px;">
         <div class="mono" style="font-size:10.5px; letter-spacing:0.06em; color:#7ea39c; text-transform:uppercase; margin-bottom:14px;">Section 8(5)</div>
         <div class="serif" style="font-size:32px; color:var(--cyan); font-weight:500; margin-bottom:10px;">₹250 Cr</div>
@@ -283,13 +330,13 @@
       <h2 class="serif" style="font-size:42px; font-weight:500; color:var(--cream); margin:0;">Four domains. One posture.</h2>
     </div>
     <div style="position:relative; max-width:1300px; margin:0 auto;">
-      <svg style="position:absolute; left:0; top:34px; width:100%; height:56px; pointer-events:none;" viewBox="0 0 1000 56" preserveAspectRatio="none" fill="none" aria-hidden="true">
+      <svg class="domains-connector" style="position:absolute; left:0; top:34px; width:100%; height:56px; pointer-events:none;" viewBox="0 0 1000 56" preserveAspectRatio="none" fill="none" aria-hidden="true">
         <path d="M18 18 H982" stroke="var(--cyan)" stroke-width="1.2" opacity="0.32"/>
         <path d="M125 18 V56 M375 18 V56 M625 18 V56 M875 18 V56" stroke="var(--cyan)" stroke-width="1.2" opacity="0.32"/>
         <circle r="3.6" fill="var(--cyan)"><animateMotion dur="5.5s" repeatCount="indefinite" path="M18 18 H982"/></circle>
         <circle r="3.6" fill="var(--cyan)" opacity="0.7"><animateMotion dur="5.5s" begin="-2.75s" repeatCount="indefinite" path="M18 18 H982"/></circle>
       </svg>
-      <div class="grid-4" style="position:relative; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px;">
+      <div class="grid-4 domains-grid" style="position:relative; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px;">
       <div class="glow-card spot spot-cy reveal" style="padding:34px 26px;">
         <div style="width:36px; height:36px; margin-bottom:20px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5fe4c9" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></div>
         <div class="serif" style="font-size:20px; color:var(--cream); font-weight:500; margin-bottom:10px;">Entity &amp; Scope</div>
@@ -364,8 +411,8 @@
       <p style="font-size:14.5px; color:#9fbdb8; font-weight:300; line-height:1.75;">A mock regulatory inquiry - modelled as closely as possible on how the Data Protection Board is expected to examine a Data Fiduciary - so you know exactly where your organisation stands before a real one ever arrives.</p>
     </div>
 
-    <div class="reveal" style="position:relative; display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; max-width:1200px; margin:0 auto; background:var(--panel); border:1px solid rgba(95,228,201,0.2); border-radius:4px; overflow:hidden;">
-      <div style="padding:56px 44px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-right:1px solid rgba(95,228,201,0.14); background:rgba(255,255,255,0.02);">
+    <div class="reveal cert-grid" style="position:relative; display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; max-width:1200px; margin:0 auto; background:var(--panel); border:1px solid rgba(95,228,201,0.2); border-radius:4px; overflow:hidden;">
+      <div class="cert-badge-col" style="padding:56px 44px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-right:1px solid rgba(95,228,201,0.14); background:rgba(255,255,255,0.02);">
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="margin-bottom:22px;">
           <circle cx="60" cy="60" r="52" fill="none" stroke="var(--cyan)" stroke-width="1.4"/>
           <circle cx="60" cy="60" r="40" fill="none" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="3 5"/>
@@ -374,7 +421,7 @@
         <div class="serif" style="font-size:20px; color:var(--cream); font-weight:500; margin-bottom:8px;">ISL DPDP Readiness Certificate</div>
         <div style="font-size:12.5px; color:#8fa9a4; line-height:1.6;">Issued to organisations that meet the readiness threshold on independent, evidence-based review.</div>
       </div>
-      <div style="padding:48px 48px;">
+      <div class="cert-steps-col" style="padding:48px 48px;">
         <div style="position:relative;">
           <svg style="position:absolute; left:0; top:0; width:22px; height:100%; pointer-events:none;" viewBox="0 0 22 100" preserveAspectRatio="none" fill="none" aria-hidden="true">
             <path d="M11 6 V94" stroke="var(--cyan)" stroke-width="1" opacity="0.28"/>
@@ -455,19 +502,49 @@
   <footer style="position:relative; padding:48px 64px; background:var(--near-black); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
     <a href="/" style="display:flex; align-items:center;"><picture><source srcset="../assets/logo-white.webp" type="image/webp"><img src="../assets/logo-white.png" alt="Ivory Slate Legal" style="height:44px; width:auto;"></picture></a>
     <div style="font-size:12.5px; color:#6f8b86; font-weight:300;">&copy; <span id="year">2026</span> Ivory Slate Legal. All rights reserved.</div>
-    <div style="display:flex; gap:28px; font-size:12.5px; color:#c6d3cf;">
-      <a href="/#practice" class="nav-link" style="color:#c6d3cf;">Practice Areas</a>
-      <a href="/docket/" class="nav-link" style="color:#c6d3cf;">The Docket</a>
-      <a href="/team/" class="nav-link" style="color:#c6d3cf;">Our Team</a>
-      <a href="/#about" class="nav-link" style="color:#c6d3cf;">About</a>
-      <a href="/#contact" class="nav-link" style="color:#c6d3cf;">Contact</a>
-    </div>
+    <button type="button" class="back-to-top" id="back-to-top-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+      Back to top
+    </button>
   </footer>
 
 </div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // back to top
+  (function(){
+    var btn = document.getElementById('back-to-top-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
+  // mobile nav toggle
+  (function(){
+    var toggleBtn = document.getElementById('nav-toggle-btn');
+    var menu = document.getElementById('mobile-menu');
+    var openIcon = document.getElementById('nav-toggle-icon-open');
+    var closeIcon = document.getElementById('nav-toggle-icon-close');
+    if (!toggleBtn || !menu) return;
+    function closeMenu(){
+      menu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      openIcon.style.display = '';
+      closeIcon.style.display = 'none';
+    }
+    function toggleMenu(){
+      var isOpen = menu.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      openIcon.style.display = isOpen ? 'none' : '';
+      closeIcon.style.display = isOpen ? '' : 'none';
+    }
+    toggleBtn.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    window.addEventListener('resize', function(){ if (window.innerWidth > 900) closeMenu(); });
+  })();
 
   // BCI disclaimer gate
   (function(){

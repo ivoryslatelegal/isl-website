@@ -1,6 +1,19 @@
-# Ivory Slate Legal — Website (V14.1)
+# Ivory Slate Legal — Website (V15)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V15
+Mobile optimization round 3: the same hamburger-nav / centered-logo / simplified-footer fix from V14 (homepage) ported to the DPDP Compliance page, The Docket (index + all 3 post pages), and the Our Team page - plus three DPDP-page-specific layout fixes, all flagged from real phone screenshots.
+
+**Common fix, ported to 5 more page templates** (`dpdp-act-data-protection-compliance/index.html`, `docket/index.html`, all 3 post pages under `docket/`, `team/index.html`):
+1. **Working mobile menu.** These pages previously either hid the nav links below 900px with nothing to replace them, or stacked the whole nav into a column - visitors on a phone had no way to reach the other pages except scrolling to the footer. Added the same hamburger icon + slide-down panel pattern from the homepage, with the logo centered and the hamburger to its side on mobile. Desktop/tablet nav (above 900px) is untouched.
+2. **Footer nav-link row removed** on all 5 templates, matching the homepage's V14.1 footer - now just the logo, copyright line, and a "Back to Top" button, since the hamburger menu (and full top nav on desktop) already cover navigation.
+
+**DPDP Compliance page-specific fixes** (`dpdp-act-data-protection-compliance/index.html`):
+3. **"Penalty Exposure" section** (the ₹250 Cr / ₹200 Cr / etc. cards) - previously squeezed into two very tall, hard-to-read columns on mobile. Now a single horizontally-scrollable row of cards, one at a time with the next peeking in from the edge.
+4. **"Four domains. One posture." section** - the decorative connecting line across the four domain cards was drawn for a single row of 4; once mobile wrapped the cards into a 2x2 grid, the line only visually connected the first two cards. Given the same horizontal-scroll treatment as the penalty cards (line hidden on mobile, since a single scrollable row doesn't need it); desktop/tablet layout with the full connecting line is unchanged.
+5. **"ISL DPDP Readiness Certificate" section** - this two-column panel (certificate badge beside the four numbered steps) had no mobile breakpoint at all, so at 390px width the two columns were crushed into overlapping, unreadable content. Now stacks to a single column below 640px, with the divider between the badge and the steps switching from a vertical line to a horizontal one.
+6. Introduces the hamburger/mobile-menu component on four page templates that didn't have it, so per the project's versioning convention this is a whole-number bump (V14.1 → V15) even though the DPDP-specific fixes are otherwise ordinary polish within existing breakpoints.
 
 ## What's new in V14.1
 Three quick fixes on top of V14's mobile round, all flagged from a fresh set of screenshots.

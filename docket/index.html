@@ -77,12 +77,29 @@
   /* NAV */
   nav.site-nav{position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:12px 64px; background:rgba(250,247,240,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
   .nav-links{display:flex; align-items:center; gap:36px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); flex-wrap:wrap;}
+  .nav-logo{display:flex; align-items:center;}
+
+  /* MOBILE NAV: hamburger + slide-down panel */
+  .nav-toggle{display:none; align-items:center; justify-content:center; width:40px; height:40px; padding:0; background:none; border:none; cursor:pointer; color:var(--ink); flex-shrink:0;}
+  .nav-toggle svg{display:block;}
+  .mobile-menu{display:none; flex-direction:column; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 16px 24px -18px rgba(0,0,0,0.2);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 24px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-top:1px solid var(--line);}
+  .mobile-menu a:first-child{border-top:none;}
+  .mobile-menu a.btn{margin:16px 24px 20px; justify-content:center; border-top:1px solid var(--teal) !important;}
 
   /* FOOTER */
   footer.site-footer{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:40px 64px; background:var(--teal-deep);}
+  .back-to-top{display:inline-flex; align-items:center; gap:8px; background:none; border:1px solid rgba(244,239,228,0.35); color:var(--cream); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; font-family:inherit; padding:9px 18px; border-radius:1px; cursor:pointer; transition:background .25s ease, border-color .25s ease;}
+  .back-to-top:hover{background:rgba(244,239,228,0.1); border-color:rgba(244,239,228,0.6);}
 
   @media (max-width:900px){
-    nav.site-nav, footer.site-footer{padding:16px 24px; flex-direction:column; align-items:flex-start; gap:14px;}
+    footer.site-footer{padding:16px 24px; flex-direction:column; align-items:flex-start; gap:14px;}
+    nav.site-nav{padding:10px 20px;}
+    nav.site-nav .nav-links{display:none !important;}
+    .nav-logo{position:absolute; left:50%; transform:translateX(-50%);}
+    .nav-logo img{height:40px !important;}
+    .nav-toggle{display:inline-flex !important;}
   }
 
   .prose{max-width:700px; margin:0 auto; font-size:15.5px; line-height:1.85; color:var(--ink-soft); font-weight:300;}
@@ -153,7 +170,7 @@
   </div>
 
   <nav class="site-nav">
-    <a href="../" style="display:flex; align-items:center;"><picture><source srcset="../assets/logo.webp" type="image/webp"><img src="../assets/logo.png" alt="Ivory Slate Legal" style="height:56px; width:auto; display:block;"></picture></a>
+    <a href="../" class="nav-logo" style="display:flex; align-items:center;"><picture><source srcset="../assets/logo.webp" type="image/webp"><img src="../assets/logo.png" alt="Ivory Slate Legal" style="height:56px; width:auto; display:block;"></picture></a>
     <div class="nav-links">
       <a href="../" class="nav-link">Home</a>
       <a href="../#practice" class="nav-link">Practice Areas</a>
@@ -163,7 +180,20 @@
       <a href="../#about" class="nav-link">About</a>
       <a href="../#contact" class="btn btn-dark" style="padding:11px 24px; font-size:12px;">Get in Touch</a>
     </div>
+    <button type="button" class="nav-toggle" id="nav-toggle-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="nav-toggle-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+      <svg id="nav-toggle-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../">Home</a>
+    <a href="../#practice">Practice Areas</a>
+    <a href="../dpdp-act-data-protection-compliance/">DPDP Compliance</a>
+    <a href="../docket/">The Docket</a>
+    <a href="../team/">Our Team</a>
+    <a href="../#about">About</a>
+    <a href="../#contact" class="btn btn-dark">Get in Touch</a>
+  </div>
 
   <div class="insights-hero">
     <div class="post-meta">What we're reading and writing</div>
@@ -206,18 +236,48 @@
   <footer class="site-footer">
     <a href="../" style="display:flex; align-items:center;"><picture><source srcset="../assets/logo-white.webp" type="image/webp"><img src="../assets/logo-white.png" alt="Ivory Slate Legal" style="height:40px; width:auto;"></picture></a>
     <div style="font-size:12.5px; color:#8fa9a4; font-weight:300;">&copy; 2026 Ivory Slate Legal. All rights reserved.</div>
-    <div style="display:flex; gap:28px; font-size:12.5px; color:#c6d3cf;">
-      <a href="../#practice" class="nav-link" style="color:#c6d3cf;">Practice Areas</a>
-      <a href="../docket/" class="nav-link" style="color:#c6d3cf;">The Docket</a>
-      <a href="../team/" class="nav-link" style="color:#c6d3cf;">Our Team</a>
-      <a href="../#about" class="nav-link" style="color:#c6d3cf;">About</a>
-      <a href="../#contact" class="nav-link" style="color:#c6d3cf;">Contact</a>
-    </div>
+    <button type="button" class="back-to-top" id="back-to-top-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+      Back to top
+    </button>
   </footer>
 
 
 </div>
 <script>
+  // back to top
+  (function(){
+    var btn = document.getElementById('back-to-top-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
+  // mobile nav toggle
+  (function(){
+    var toggleBtn = document.getElementById('nav-toggle-btn');
+    var menu = document.getElementById('mobile-menu');
+    var openIcon = document.getElementById('nav-toggle-icon-open');
+    var closeIcon = document.getElementById('nav-toggle-icon-close');
+    if (!toggleBtn || !menu) return;
+    function closeMenu(){
+      menu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      openIcon.style.display = '';
+      closeIcon.style.display = 'none';
+    }
+    function toggleMenu(){
+      var isOpen = menu.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      openIcon.style.display = isOpen ? 'none' : '';
+      closeIcon.style.display = isOpen ? '' : 'none';
+    }
+    toggleBtn.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    window.addEventListener('resize', function(){ if (window.innerWidth > 900) closeMenu(); });
+  })();
+
   (function(){
     var GATE_KEY = 'isl_bci_disclaimer_accepted';
     var gate = document.getElementById('bci-gate');
