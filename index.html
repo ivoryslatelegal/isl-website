@@ -153,7 +153,7 @@
   /* MOBILE NAV : hamburger + slide-down panel (below 900px, matching the existing nav-links breakpoint) */
   .nav-toggle{display:none; align-items:center; justify-content:center; width:40px; height:40px; padding:0; background:none; border:none; cursor:pointer; color:var(--ink); flex-shrink:0;}
   .nav-toggle svg{display:block;}
-  .mobile-menu{display:none; flex-direction:column; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 16px 24px -18px rgba(0,0,0,0.2);}
+  .mobile-menu{display:none; flex-direction:column; position:fixed; top:var(--nav-h, 76px); left:0; right:0; z-index:29; max-height:calc(100vh - var(--nav-h, 76px)); overflow-y:auto; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 16px 24px -18px rgba(0,0,0,0.2);}
   .mobile-menu.open{display:flex;}
   .mobile-menu a{padding:16px 24px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-top:1px solid var(--line);}
   .mobile-menu a:first-child{border-top:none;}
@@ -175,10 +175,11 @@
     .contact-grid{grid-template-columns:1fr !important;}
     h1{font-size:44px !important;}
     nav .nav-links{display:none !important;}
-    .site-nav{padding:10px 20px !important; position:relative !important;}
+    .site-nav{padding:10px 20px !important;}
     .nav-logo{position:absolute !important; left:50% !important; transform:translateX(-50%) !important;}
     .nav-logo img{height:52px !important;}
     .nav-toggle{display:inline-flex !important;}
+    footer{flex-direction:column !important; align-items:center !important; text-align:center !important; gap:16px !important;}
     .orbit-layout{flex-direction:column;}
     .orbit-panel{max-width:100%; margin:36px 0 0;}
   }
@@ -884,7 +885,13 @@
     var menu = document.getElementById('mobile-menu');
     var openIcon = document.getElementById('nav-toggle-icon-open');
     var closeIcon = document.getElementById('nav-toggle-icon-close');
+    var navEl = document.querySelector('.site-nav');
     if (!toggleBtn || !menu) return;
+    function updateNavHeight(){
+      if (navEl) document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px');
+    }
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight);
     function closeMenu(){
       menu.classList.remove('open');
       toggleBtn.setAttribute('aria-expanded', 'false');
@@ -892,6 +899,7 @@
       closeIcon.style.display = 'none';
     }
     function toggleMenu(){
+      updateNavHeight();
       var isOpen = menu.classList.toggle('open');
       toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       openIcon.style.display = isOpen ? 'none' : '';
