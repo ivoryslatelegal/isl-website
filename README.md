@@ -1,6 +1,15 @@
-# Ivory Slate Legal — Website (V13)
+# Ivory Slate Legal — Website (V14)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V14
+A mobile optimization round on the homepage, fixing five issues flagged from real phone screenshots (390px). Homepage only this round - the DPDP page, Docket, and Team page have the same missing-mobile-nav gap and are likely worth the same fix in a follow-up round.
+
+1. **A working mobile menu, finally.** Below 900px width the top nav previously just hid all its links with nothing to replace them - visitors on a phone had no way to reach Practice Areas, DPDP Compliance, The Docket, Our Team, or About except by scrolling all the way to the footer. Added a hamburger icon that opens a slide-down panel with all five links plus "Get in Touch"; the logo is now centered on mobile with the hamburger to its left, closing the "logo not centered, no nav menu" gap. Desktop and tablet nav are untouched (existing behavior over 900px wide is unchanged).
+2. **The "How We Work" orbit graphic (the small circular diagram)** no longer gets cropped off the right edge of the screen - it was rendered at a fixed 360x360px regardless of viewport width, so on a 390px phone it overflowed. Now scales to fit and stays centered.
+3. **The homepage's "From our knowledge bank" (Docket teaser) section** no longer squeezes three post cards into unreadable, clipped columns on mobile - it's now a single horizontally-scrollable row of full-width cards, one post visible at a time with the next peeking in from the edge.
+4. **The "Explore DPDP Compliance" button** on the DPDP banner no longer bleeds off the right edge of the screen on mobile - the banner now stacks vertically below 640px, with the button spanning the full width beneath the text instead of trying to sit beside it.
+5. Introduces a genuinely new component (the hamburger/mobile-menu), so per the project's versioning convention this is a whole-number bump rather than a decimal one, even though the other four fixes are ordinary polish within the existing breakpoints.
 
 ## What's new in V13
 A larger Team page reorganization (six new hires, restructured sections) plus two homepage additions.

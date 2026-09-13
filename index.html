@@ -150,6 +150,15 @@
   .orbit-panel-item.active{display:block; animation:orbitFade .5s cubic-bezier(.2,.7,.2,1);}
   @keyframes orbitFade{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 
+  /* MOBILE NAV : hamburger + slide-down panel (below 900px, matching the existing nav-links breakpoint) */
+  .nav-toggle{display:none; align-items:center; justify-content:center; width:40px; height:40px; padding:0; background:none; border:none; cursor:pointer; color:var(--ink); flex-shrink:0;}
+  .nav-toggle svg{display:block;}
+  .mobile-menu{display:none; flex-direction:column; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 16px 24px -18px rgba(0,0,0,0.2);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 24px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-top:1px solid var(--line);}
+  .mobile-menu a:first-child{border-top:none;}
+  .mobile-menu a.btn{margin:16px 24px 20px; justify-content:center; border-top:none;}
+
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr !important;}
     .hero-est{display:none;}
@@ -163,6 +172,10 @@
     .contact-grid{grid-template-columns:1fr !important;}
     h1{font-size:44px !important;}
     nav .nav-links{display:none !important;}
+    .site-nav{padding:10px 20px !important; position:relative !important;}
+    .nav-logo{position:absolute !important; left:50% !important; transform:translateX(-50%) !important;}
+    .nav-logo img{height:52px !important;}
+    .nav-toggle{display:inline-flex !important;}
     .orbit-layout{flex-direction:column;}
     .orbit-panel{max-width:100%; margin:36px 0 0;}
   }
@@ -176,6 +189,22 @@
     .orbit-node.active{transform:scale(1.08);}
     .orbit-panel-item ul{grid-template-columns:1fr !important;}
     .orbit-panel-item > div{padding:32px 26px !important;}
+
+    /* "How We Work" orbit graphic (the small circular diagram) - keep it inside the viewport and centered */
+    #approach{padding-left:24px !important; padding-right:24px !important;}
+    .approach-sticky svg{width:100% !important; max-width:260px !important; height:auto !important;}
+
+    /* DPDP banner - stack instead of letting the button bleed off-screen */
+    .dpdp-banner-wrap{padding-left:20px !important; padding-right:20px !important;}
+    .dpdp-banner{flex-direction:column !important; align-items:flex-start !important; padding:28px 24px !important; margin-top:44px !important;}
+    .dpdp-banner-cta{width:100%; justify-content:center; margin-top:6px;}
+
+    /* Docket teaser - one horizontally scrollable row instead of 3 cramped columns */
+    .docket-wrap{padding-left:20px !important; padding-right:20px !important; padding-top:70px !important;}
+    .docket-grid{display:flex !important; grid-template-columns:none !important; overflow-x:auto !important; scroll-snap-type:x mandatory !important; gap:16px !important; margin:0 -20px !important; padding:0 20px 10px !important; -webkit-overflow-scrolling:touch;}
+    .docket-grid::-webkit-scrollbar{height:6px;}
+    .docket-grid::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+    .docket-grid > a{flex:0 0 78%; scroll-snap-align:start;}
   }
 
   /* BCI DISCLAIMER GATE */
@@ -217,8 +246,8 @@
   </div>
 
   <!-- NAV -->
-  <nav style="position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:12px 64px; background:rgba(250,247,240,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);">
-    <div style="display:flex; align-items:center;">
+  <nav class="site-nav" style="position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:12px 64px; background:rgba(250,247,240,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);">
+    <div class="nav-logo" style="display:flex; align-items:center;">
       <picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" alt="Ivory Slate Legal" style="height:72px; width:auto; display:block;"></picture>
     </div>
     <div class="nav-links" style="display:flex; align-items:center; gap:40px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);">
@@ -229,7 +258,19 @@
       <a href="#about" class="nav-link">About</a>
       <a href="#contact" class="btn btn-dark" style="padding:11px 24px; font-size:12px;">Get in Touch</a>
     </div>
+    <button type="button" class="nav-toggle" id="nav-toggle-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="nav-toggle-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+      <svg id="nav-toggle-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="display:none;"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#practice">Practice Areas</a>
+    <a href="/dpdp-act-data-protection-compliance/">DPDP Compliance</a>
+    <a href="/docket/">The Docket</a>
+    <a href="/team/">Our Team</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn btn-dark">Get in Touch</a>
+  </div>
 
   <!-- HERO -->
   <div style="position:relative; background:var(--teal-deep);">
@@ -330,7 +371,7 @@
   <!-- HOW WE WORK -->
   <div id="approach" class="approach-grid" style="position:relative; display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; padding:20px 64px 40px; max-width:1300px; margin:0 auto;">
     <div class="approach-sticky" style="position:sticky; top:110px; height:420px; align-self:start; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-      <svg width="360" height="360" viewBox="0 0 360 360" style="overflow:visible;" aria-hidden="true">
+      <svg width="360" height="360" viewBox="0 0 360 360" style="overflow:visible; max-width:100%; height:auto;" aria-hidden="true">
         <g class="ring-a">
           <circle cx="180" cy="180" r="170" fill="none" stroke="var(--line)" stroke-width="1"/>
           <circle cx="180" cy="180" r="170" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="4 260" stroke-linecap="round"/>
@@ -565,19 +606,19 @@
   </div>
 
   <!-- DPDP WING : slim banner -->
-  <div style="padding:0 64px; margin-top:-1px;">
-    <a href="/dpdp-act-data-protection-compliance/" class="card spot spot-lt" style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:1300px; margin:70px auto 0; background:var(--teal-deep); overflow:hidden; text-decoration:none; border-radius:2px; padding:30px 44px;">
+  <div class="dpdp-banner-wrap" style="padding:0 64px; margin-top:-1px;">
+    <a href="/dpdp-act-data-protection-compliance/" class="card spot spot-lt dpdp-banner" style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:1300px; margin:70px auto 0; background:var(--teal-deep); overflow:hidden; text-decoration:none; border-radius:2px; padding:30px 44px;">
       <div style="position:relative; z-index:1; display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
         <span class="twinkle" style="width:6px; height:6px; border-radius:50%; background:#5fe4c9; display:inline-block; flex-shrink:0;"></span>
         <span class="serif" style="font-size:20px; font-weight:600; color:var(--cream); line-height:1.3;">New: a dedicated wing for DPDP Act compliance.</span>
         <span style="font-size:13.5px; color:#c6d3cf; font-weight:300; max-width:380px;">Free readiness self-assessment, plus full implementation support.</span>
       </div>
-      <span class="btn btn-solid" style="display:inline-flex; flex-shrink:0;">Explore DPDP Compliance &rarr;</span>
+      <span class="btn btn-solid dpdp-banner-cta" style="display:inline-flex; flex-shrink:0;">Explore DPDP Compliance &rarr;</span>
     </a>
   </div>
 
   <!-- DOCKET : latest posts teaser -->
-  <div style="padding:120px 64px 0; max-width:1300px; margin:0 auto;">
+  <div class="docket-wrap" style="padding:120px 64px 0; max-width:1300px; margin:0 auto;">
     <div class="reveal" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:44px;">
       <div>
         <div class="eyebrow" style="margin-bottom:16px;">The Docket</div>
@@ -585,7 +626,7 @@
       </div>
       <a href="/docket/" class="btn btn-dark" style="flex-shrink:0;">Visit The Docket &rarr;</a>
     </div>
-    <div class="reveal" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:28px;">
+    <div class="reveal docket-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:28px;">
       <a href="/docket/dpdp-act-enforcement-status/" class="card spot spot-dk" style="display:block; text-decoration:none; background:var(--cream); border-radius:2px; overflow:hidden;">
         <div style="aspect-ratio:1200/630; background:var(--teal-deep); overflow:hidden;"><img src="/docket/assets/dpdp-act-enforcement-status.png" alt="" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div style="padding:26px 26px 30px;">
@@ -827,6 +868,30 @@
       gate.hidden = true;
       document.body.style.overflow = '';
     });
+  })();
+
+  // mobile nav toggle
+  (function(){
+    var toggleBtn = document.getElementById('nav-toggle-btn');
+    var menu = document.getElementById('mobile-menu');
+    var openIcon = document.getElementById('nav-toggle-icon-open');
+    var closeIcon = document.getElementById('nav-toggle-icon-close');
+    if (!toggleBtn || !menu) return;
+    function closeMenu(){
+      menu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      openIcon.style.display = '';
+      closeIcon.style.display = 'none';
+    }
+    function toggleMenu(){
+      var isOpen = menu.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      openIcon.style.display = isOpen ? 'none' : '';
+      closeIcon.style.display = isOpen ? '' : 'none';
+    }
+    toggleBtn.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    window.addEventListener('resize', function(){ if (window.innerWidth > 900) closeMenu(); });
   })();
 
   // practice areas - radial orbit selector
