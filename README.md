@@ -1,6 +1,17 @@
-# Ivory Slate Legal — Website (V12.1)
+# Ivory Slate Legal — Website (V13)
 
 This folder is a complete, ready-to-host website: `index.html` (homepage), a dedicated DPDP Act compliance page at `dpdp-act-data-protection-compliance/index.html`, a `dpdp.html` redirect stub for anyone with the old link, a `docket/` section (index page plus one folder per post, plus a `docket/assets/` folder with per-post title-card images), a `team/` page with the firm's roster and photos, `robots.txt`, `sitemap.xml`, and a `CNAME` file, a root-level `favicon.ico`, and an `assets` folder with the logos (PNG plus WebP), favicons, and team photos (`assets/team/`). No build step, no dependencies - just static files.
+
+## What's new in V13
+A larger Team page reorganization (six new hires, restructured sections) plus two homepage additions.
+
+1. **Six more people added to the Team page, now 15 total**, reorganized into six sections in this order: Partners, **Senior Advisor** (new), Senior Associates, Associates, **HR** (new, renamed from "Operations"), Paralegals. New hires: Manish Acharya (Senior Advisor, generic draft bio - replace with his real background when you have it), Eukti Garg (Senior Associate, now heads Corporate & Commercial, moved off Samaira Anand so each Senior Associate heads exactly one practice area), Lakshay Chetal and Saksham Sethi (Paralegals, both supporting Litigation & Dispute Resolution). Arijeet Vaishnav stayed on the roster (his updated photo replaced the old one) and now supports IP & Trademarks instead of Litigation, at your request to swap his and Saksham's assignments.
+2. **Kanupriya Bhati's title changed to "Head of HR & Compliance"** (from "People & Talent Lead"), with her bio expanded to mention POSH and workplace policy compliance alongside recruitment and onboarding.
+3. **All 15 photos reprocessed from a fresh high-resolution batch** you provided, cropped to the same 3:4 ratio and 720x960 size as before, replacing every existing photo in `assets/team/` for consistency across the newer and older shots.
+4. **Homepage navigation simplified**: the separate "Leadership" link removed from the top nav (footer nav already only had "Our Team"), since it pointed to an anonymized section that doesn't need its own top-level nav slot alongside "Our Team".
+5. **A "Meet the Full Team" button added to the homepage's Leadership section**, linking to `/team/` - since the on-page Leadership section is intentionally anonymized (no names, per the standing constraint on the Managing Partners), this gives visitors a way to see the actual people behind the firm.
+6. **A new "From our knowledge bank" section added to the homepage**, right after the DPDP banner - three post cards (image, tag, title, date) for the Docket's existing posts, plus a "Visit The Docket" button. The Docket was previously reachable only via nav; now it's featured on the homepage itself.
+7. Since this reorganizes the Team page's structure (new sections, reassigned practice-area heads) and adds a new homepage section, the version number moved to a new whole number rather than a decimal bump.
 
 ## What's new in V12.1
 Two additions to the **Our Team** page (`/team/`):
